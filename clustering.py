@@ -83,7 +83,7 @@ def create_network_kmeans(text, kmeans = [], tfidf = None, key_terms = None, fre
                 #add edge between cluster label and term
                 G.add_edge('Cluster '+ str(i), str(term))
         #create and html file with network graph            
-        G.show(str(k)+"clusters.html")
+        G.show('_'+str(k)+"clusters.html")
 
 #read file        
 ruv_df = pkl_functions.read_pkl('RUV.pkl')
