@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1>None</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "black"}, "id": "Cluster 1", "label": "Cluster 1", "shape": "dot", "value": 231}, {"font": {"color": "black"}, "id": "iceland", "label": "iceland", "shape": "dot", "value": 379}, {"font": {"color": "black"}, "id": "says", "label": "says", "shape": "dot", "value": 259}, {"font": {"color": "black"}, "id": "icelandic", "label": "icelandic", "shape": "dot", "value": 250}, {"font": {"color": "black"}, "id": "also", "label": "also", "shape": "dot", "value": 263}, {"font": {"color": "black"}, "id": "one", "label": "one", "shape": "dot", "value": 232}, {"font": {"color": "black"}, "id": "people", "label": "people", "shape": "dot", "value": 282}, {"font": {"color": "black"}, "id": "time", "label": "time", "shape": "dot", "value": 204}, {"font": {"color": "black"}, "id": "around", "label": "around", "shape": "dot", "value": 217}, {"font": {"color": "black"}, "id": "new", "label": "new", "shape": "dot", "value": 234}, {"font": {"color": "black"}, "id": "year", "label": "year", "shape": "dot", "value": 175}, {"font": {"color": "black"}, "id": "first", "label": "first", "shape": "dot", "value": 169}, {"font": {"color": "black"}, "id": "years", "label": "years", "shape": "dot", "value": 127}, {"font": {"color": "black"}, "id": "two", "label": "two", "shape": "dot", "value": 205}, {"font": {"color": "black"}, "id": "last", "label": "last", "shape": "dot", "value": 170}, {"font": {"color": "black"}, "id": "well", "label": "well", "shape": "dot", "value": 144}, {"font": {"color": "black"}, "id": "according", "label": "according", "shape": "dot", "value": 136}, {"font": {"color": "black"}, "id": "three", "label": "three", "shape": "dot", "value": 162}, {"font": {"color": "black"}, "id": "would", "label": "would", "shape": "dot", "value": 147}, {"font": {"color": "black"}, "id": "r\u00fav", "label": "r\u00fav", "shape": "dot", "value": 159}, {"font": {"color": "black"}, "id": "many", "label": "many", "shape": "dot", "value": 134}, {"font": {"color": "black"}, "id": "take", "label": "take", "shape": "dot", "value": 106}, {"font": {"color": "black"}, "id": "since", "label": "since", "shape": "dot", "value": 130}, {"font": {"color": "black"}, "id": "work", "label": "work", "shape": "dot", "value": 103}, {"font": {"color": "black"}, "id": "week", "label": "week", "shape": "dot", "value": 150}, {"font": {"color": "black"}, "id": "country", "label": "country", "shape": "dot", "value": 157}, {"font": {"color": "black"}, "id": "company", "label": "company", "shape": "dot", "value": 90}, {"font": {"color": "black"}, "id": "start", "label": "start", "shape": "dot", "value": 112}, {"font": {"color": "black"}, "id": "reykjav\u00edk", "label": "reykjav\u00edk", "shape": "dot", "value": 122}, {"font": {"color": "black"}, "id": "19", "label": "19", "shape": "dot", "value": 217}, {"font": {"color": "black"}, "id": "end", "label": "end", "shape": "dot", "value": 110}, {"font": {"color": "black"}, "id": "Cluster 2", "label": "Cluster 2", "shape": "dot", "value": 120}, {"font": {"color": "black"}, "id": "covid", "label": "covid", "shape": "dot", "value": 210}, {"font": {"color": "black"}, "id": "coronavirus", "label": "coronavirus", "shape": "dot", "value": 167}, {"font": {"color": "black"}, "id": "quarantine", "label": "quarantine", "shape": "dot", "value": 118}, {"font": {"color": "black"}, "id": "cases", "label": "cases", "shape": "dot", "value": 111}, {"font": {"color": "black"}, "id": "testing", "label": "testing", "shape": "dot", "value": 88}, {"font": {"color": "black"}, "id": "yesterday", "label": "yesterday", "shape": "dot", "value": 159}, {"font": {"color": "black"}, "id": "days", "label": "days", "shape": "dot", "value": 132}, {"font": {"color": "black"}, "id": "health", "label": "health", "shape": "dot", "value": 106}, {"font": {"color": "black"}, "id": "today", "label": "today", "shape": "dot", "value": 165}, {"font": {"color": "black"}, "id": "hospital", "label": "hospital", "shape": "dot", "value": 96}, {"font": {"color": "black"}, "id": "diagnosed", "label": "diagnosed", "shape": "dot", "value": 71}, {"font": {"color": "black"}, "id": "home", "label": "home", "shape": "dot", "value": 117}, {"font": {"color": "black"}, "id": "authorities", "label": "authorities", "shape": "dot", "value": 98}, {"font": {"color": "black"}, "id": "virus", "label": "virus", "shape": "dot", "value": 67}, {"font": {"color": "black"}, "id": "chief", "label": "chief", "shape": "dot", "value": 90}, {"font": {"color": "black"}, "id": "including", "label": "including", "shape": "dot", "value": 142}, {"font": {"color": "black"}, "id": "Cluster 0", "label": "Cluster 0", "shape": "dot", "value": 61}, {"font": {"color": "black"}, "id": "percent", "label": "percent", "shape": "dot", "value": 129}, {"font": {"color": "black"}, "id": "number", "label": "number", "shape": "dot", "value": 121}, {"font": {"color": "black"}, "id": "state", "label": "state", "shape": "dot", "value": 120}, {"font": {"color": "black"}, "id": "crisis", "label": "crisis", "shape": "dot", "value": 88}, {"font": {"color": "black"}, "id": "000", "label": "000", "shape": "dot", "value": 103}, {"font": {"color": "black"}, "id": "kr\u00f3nur", "label": "kr\u00f3nur", "shape": "dot", "value": 77}, {"font": {"color": "black"}, "id": "government", "label": "government", "shape": "dot", "value": 102}, {"font": {"color": "black"}, "id": "month", "label": "month", "shape": "dot", "value": 78}, {"font": {"color": "black"}, "id": "months", "label": "months", "shape": "dot", "value": 68}, {"font": {"color": "black"}, "id": "Cluster 4", "label": "Cluster 4", "shape": "dot", "value": 58}, {"font": {"color": "black"}, "id": "police", "label": "police", "shape": "dot", "value": 105}, {"font": {"color": "black"}, "id": "man", "label": "man", "shape": "dot", "value": 54}, {"font": {"color": "black"}, "id": "region", "label": "region", "shape": "dot", "value": 95}, {"font": {"color": "black"}, "id": "capital", "label": "capital", "shape": "dot", "value": 86}, {"font": {"color": "black"}, "id": "taken", "label": "taken", "shape": "dot", "value": 88}, {"font": {"color": "black"}, "id": "confirmed", "label": "confirmed", "shape": "dot", "value": 108}, {"font": {"color": "black"}, "id": "started", "label": "started", "shape": "dot", "value": 75}, {"font": {"color": "black"}, "id": "statement", "label": "statement", "shape": "dot", "value": 67}, {"font": {"color": "black"}, "id": "case", "label": "case", "shape": "dot", "value": 64}, {"font": {"color": "black"}, "id": "found", "label": "found", "shape": "dot", "value": 56}, {"font": {"color": "black"}, "id": "morning", "label": "morning", "shape": "dot", "value": 77}, {"font": {"color": "black"}, "id": "released", "label": "released", "shape": "dot", "value": 50}, {"font": {"color": "black"}, "id": "reported", "label": "reported", "shape": "dot", "value": 53}, {"font": {"color": "black"}, "id": "Cluster 3", "label": "Cluster 3", "shape": "dot", "value": 30}, {"font": {"color": "black"}, "id": "english", "label": "english", "shape": "dot", "value": 72}, {"font": {"color": "black"}, "id": "major", "label": "major", "shape": "dot", "value": 72}, {"font": {"color": "black"}, "id": "news", "label": "news", "shape": "dot", "value": 111}, {"font": {"color": "black"}, "id": "next", "label": "next", "shape": "dot", "value": 108}, {"font": {"color": "black"}, "id": "services", "label": "services", "shape": "dot", "value": 98}, {"font": {"color": "black"}, "id": "monday", "label": "monday", "shape": "dot", "value": 59}, {"font": {"color": "black"}, "id": "available", "label": "available", "shape": "dot", "value": 68}, {"font": {"color": "black"}, "id": "seven", "label": "seven", "shape": "dot", "value": 67}, {"font": {"color": "black"}, "id": "past", "label": "past", "shape": "dot", "value": 59}, {"font": {"color": "black"}, "id": "going", "label": "going", "shape": "dot", "value": 68}, {"font": {"color": "black"}, "id": "live", "label": "live", "shape": "dot", "value": 58}, {"font": {"color": "black"}, "id": "outbreak", "label": "outbreak", "shape": "dot", "value": 68}, {"font": {"color": "black"}, "id": "public", "label": "public", "shape": "dot", "value": 112}, {"font": {"color": "black"}, "id": "travel", "label": "travel", "shape": "dot", "value": 76}, {"font": {"color": "black"}, "id": "00", "label": "00", "shape": "dot", "value": 63}, {"font": {"color": "black"}, "id": "latest", "label": "latest", "shape": "dot", "value": 54}]);
+        edges = new vis.DataSet([{"from": "Cluster 1", "to": "iceland"}, {"from": "Cluster 1", "to": "says"}, {"from": "Cluster 1", "to": "icelandic"}, {"from": "Cluster 1", "to": "also"}, {"from": "Cluster 1", "to": "one"}, {"from": "Cluster 1", "to": "people"}, {"from": "Cluster 1", "to": "time"}, {"from": "Cluster 1", "to": "around"}, {"from": "Cluster 1", "to": "new"}, {"from": "Cluster 1", "to": "year"}, {"from": "Cluster 1", "to": "first"}, {"from": "Cluster 1", "to": "years"}, {"from": "Cluster 1", "to": "two"}, {"from": "Cluster 1", "to": "last"}, {"from": "Cluster 1", "to": "well"}, {"from": "Cluster 1", "to": "according"}, {"from": "Cluster 1", "to": "three"}, {"from": "Cluster 1", "to": "would"}, {"from": "Cluster 1", "to": "r\u00fav"}, {"from": "Cluster 1", "to": "many"}, {"from": "Cluster 1", "to": "take"}, {"from": "Cluster 1", "to": "since"}, {"from": "Cluster 1", "to": "work"}, {"from": "Cluster 1", "to": "week"}, {"from": "Cluster 1", "to": "country"}, {"from": "Cluster 1", "to": "company"}, {"from": "Cluster 1", "to": "start"}, {"from": "Cluster 1", "to": "reykjav\u00edk"}, {"from": "Cluster 1", "to": "19"}, {"from": "Cluster 1", "to": "end"}, {"from": "Cluster 2", "to": "covid"}, {"from": "Cluster 2", "to": "19"}, {"from": "Cluster 2", "to": "iceland"}, {"from": "Cluster 2", "to": "people"}, {"from": "Cluster 2", "to": "coronavirus"}, {"from": "Cluster 2", "to": "quarantine"}, {"from": "Cluster 2", "to": "new"}, {"from": "Cluster 2", "to": "cases"}, {"from": "Cluster 2", "to": "testing"}, {"from": "Cluster 2", "to": "two"}, {"from": "Cluster 2", "to": "also"}, {"from": "Cluster 2", "to": "one"}, {"from": "Cluster 2", "to": "yesterday"}, {"from": "Cluster 2", "to": "country"}, {"from": "Cluster 2", "to": "days"}, {"from": "Cluster 2", "to": "icelandic"}, {"from": "Cluster 2", "to": "says"}, {"from": "Cluster 2", "to": "health"}, {"from": "Cluster 2", "to": "time"}, {"from": "Cluster 2", "to": "today"}, {"from": "Cluster 2", "to": "hospital"}, {"from": "Cluster 2", "to": "diagnosed"}, {"from": "Cluster 2", "to": "around"}, {"from": "Cluster 2", "to": "home"}, {"from": "Cluster 2", "to": "first"}, {"from": "Cluster 2", "to": "authorities"}, {"from": "Cluster 2", "to": "virus"}, {"from": "Cluster 2", "to": "chief"}, {"from": "Cluster 2", "to": "including"}, {"from": "Cluster 2", "to": "three"}, {"from": "Cluster 0", "to": "percent"}, {"from": "Cluster 0", "to": "iceland"}, {"from": "Cluster 0", "to": "year"}, {"from": "Cluster 0", "to": "last"}, {"from": "Cluster 0", "to": "people"}, {"from": "Cluster 0", "to": "icelandic"}, {"from": "Cluster 0", "to": "says"}, {"from": "Cluster 0", "to": "around"}, {"from": "Cluster 0", "to": "one"}, {"from": "Cluster 0", "to": "also"}, {"from": "Cluster 0", "to": "new"}, {"from": "Cluster 0", "to": "according"}, {"from": "Cluster 0", "to": "number"}, {"from": "Cluster 0", "to": "would"}, {"from": "Cluster 0", "to": "state"}, {"from": "Cluster 0", "to": "country"}, {"from": "Cluster 0", "to": "19"}, {"from": "Cluster 0", "to": "years"}, {"from": "Cluster 0", "to": "first"}, {"from": "Cluster 0", "to": "crisis"}, {"from": "Cluster 0", "to": "two"}, {"from": "Cluster 0", "to": "000"}, {"from": "Cluster 0", "to": "time"}, {"from": "Cluster 0", "to": "kr\u00f3nur"}, {"from": "Cluster 0", "to": "government"}, {"from": "Cluster 0", "to": "three"}, {"from": "Cluster 0", "to": "month"}, {"from": "Cluster 0", "to": "covid"}, {"from": "Cluster 0", "to": "months"}, {"from": "Cluster 0", "to": "including"}, {"from": "Cluster 4", "to": "police"}, {"from": "Cluster 4", "to": "man"}, {"from": "Cluster 4", "to": "around"}, {"from": "Cluster 4", "to": "region"}, {"from": "Cluster 4", "to": "iceland"}, {"from": "Cluster 4", "to": "capital"}, {"from": "Cluster 4", "to": "yesterday"}, {"from": "Cluster 4", "to": "also"}, {"from": "Cluster 4", "to": "says"}, {"from": "Cluster 4", "to": "two"}, {"from": "Cluster 4", "to": "people"}, {"from": "Cluster 4", "to": "reykjav\u00edk"}, {"from": "Cluster 4", "to": "chief"}, {"from": "Cluster 4", "to": "taken"}, {"from": "Cluster 4", "to": "three"}, {"from": "Cluster 4", "to": "r\u00fav"}, {"from": "Cluster 4", "to": "confirmed"}, {"from": "Cluster 4", "to": "started"}, {"from": "Cluster 4", "to": "statement"}, {"from": "Cluster 4", "to": "case"}, {"from": "Cluster 4", "to": "well"}, {"from": "Cluster 4", "to": "found"}, {"from": "Cluster 4", "to": "one"}, {"from": "Cluster 4", "to": "morning"}, {"from": "Cluster 4", "to": "years"}, {"from": "Cluster 4", "to": "week"}, {"from": "Cluster 4", "to": "last"}, {"from": "Cluster 4", "to": "released"}, {"from": "Cluster 4", "to": "reported"}, {"from": "Cluster 4", "to": "according"}, {"from": "Cluster 3", "to": "english"}, {"from": "Cluster 3", "to": "r\u00fav"}, {"from": "Cluster 3", "to": "major"}, {"from": "Cluster 3", "to": "news"}, {"from": "Cluster 3", "to": "today"}, {"from": "Cluster 3", "to": "next"}, {"from": "Cluster 3", "to": "services"}, {"from": "Cluster 3", "to": "iceland"}, {"from": "Cluster 3", "to": "week"}, {"from": "Cluster 3", "to": "monday"}, {"from": "Cluster 3", "to": "available"}, {"from": "Cluster 3", "to": "including"}, {"from": "Cluster 3", "to": "new"}, {"from": "Cluster 3", "to": "covid"}, {"from": "Cluster 3", "to": "19"}, {"from": "Cluster 3", "to": "coronavirus"}, {"from": "Cluster 3", "to": "seven"}, {"from": "Cluster 3", "to": "days"}, {"from": "Cluster 3", "to": "past"}, {"from": "Cluster 3", "to": "going"}, {"from": "Cluster 3", "to": "icelandic"}, {"from": "Cluster 3", "to": "also"}, {"from": "Cluster 3", "to": "live"}, {"from": "Cluster 3", "to": "outbreak"}, {"from": "Cluster 3", "to": "people"}, {"from": "Cluster 3", "to": "public"}, {"from": "Cluster 3", "to": "travel"}, {"from": "Cluster 3", "to": "00"}, {"from": "Cluster 3", "to": "home"}, {"from": "Cluster 3", "to": "latest"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

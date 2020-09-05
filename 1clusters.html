@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1>None</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Cluster 0", "label": "Cluster 0", "shape": "dot", "value": 331}, {"font": {"color": "white"}, "id": "iceland", "label": "iceland", "shape": "dot", "value": 379}, {"font": {"color": "white"}, "id": "says", "label": "says", "shape": "dot", "value": 259}, {"font": {"color": "white"}, "id": "also", "label": "also", "shape": "dot", "value": 263}, {"font": {"color": "white"}, "id": "icelandic", "label": "icelandic", "shape": "dot", "value": 250}, {"font": {"color": "white"}, "id": "people", "label": "people", "shape": "dot", "value": 282}, {"font": {"color": "white"}, "id": "around", "label": "around", "shape": "dot", "value": 217}, {"font": {"color": "white"}, "id": "one", "label": "one", "shape": "dot", "value": 232}, {"font": {"color": "white"}, "id": "year", "label": "year", "shape": "dot", "value": 175}, {"font": {"color": "white"}, "id": "time", "label": "time", "shape": "dot", "value": 204}, {"font": {"color": "white"}, "id": "new", "label": "new", "shape": "dot", "value": 234}, {"font": {"color": "white"}, "id": "last", "label": "last", "shape": "dot", "value": 170}, {"font": {"color": "white"}, "id": "years", "label": "years", "shape": "dot", "value": 127}, {"font": {"color": "white"}, "id": "two", "label": "two", "shape": "dot", "value": 205}, {"font": {"color": "white"}, "id": "according", "label": "according", "shape": "dot", "value": 136}, {"font": {"color": "white"}, "id": "three", "label": "three", "shape": "dot", "value": 162}, {"font": {"color": "white"}, "id": "first", "label": "first", "shape": "dot", "value": 169}, {"font": {"color": "white"}, "id": "well", "label": "well", "shape": "dot", "value": 144}, {"font": {"color": "white"}, "id": "r\u00fav", "label": "r\u00fav", "shape": "dot", "value": 159}, {"font": {"color": "white"}, "id": "would", "label": "would", "shape": "dot", "value": 147}, {"font": {"color": "white"}, "id": "since", "label": "since", "shape": "dot", "value": 130}, {"font": {"color": "white"}, "id": "Cluster 1", "label": "Cluster 1", "shape": "dot", "value": 169}, {"font": {"color": "white"}, "id": "covid", "label": "covid", "shape": "dot", "value": 210}, {"font": {"color": "white"}, "id": "19", "label": "19", "shape": "dot", "value": 217}, {"font": {"color": "white"}, "id": "coronavirus", "label": "coronavirus", "shape": "dot", "value": 167}, {"font": {"color": "white"}, "id": "quarantine", "label": "quarantine", "shape": "dot", "value": 118}, {"font": {"color": "white"}, "id": "today", "label": "today", "shape": "dot", "value": 165}, {"font": {"color": "white"}, "id": "cases", "label": "cases", "shape": "dot", "value": 111}, {"font": {"color": "white"}, "id": "days", "label": "days", "shape": "dot", "value": 132}, {"font": {"color": "white"}, "id": "yesterday", "label": "yesterday", "shape": "dot", "value": 159}, {"font": {"color": "white"}, "id": "including", "label": "including", "shape": "dot", "value": 142}, {"font": {"color": "white"}, "id": "country", "label": "country", "shape": "dot", "value": 157}, {"font": {"color": "white"}, "id": "testing", "label": "testing", "shape": "dot", "value": 88}]);
+        edges = new vis.DataSet([{"from": "Cluster 0", "to": "iceland"}, {"from": "Cluster 0", "to": "says"}, {"from": "Cluster 0", "to": "also"}, {"from": "Cluster 0", "to": "icelandic"}, {"from": "Cluster 0", "to": "people"}, {"from": "Cluster 0", "to": "around"}, {"from": "Cluster 0", "to": "one"}, {"from": "Cluster 0", "to": "year"}, {"from": "Cluster 0", "to": "time"}, {"from": "Cluster 0", "to": "new"}, {"from": "Cluster 0", "to": "last"}, {"from": "Cluster 0", "to": "years"}, {"from": "Cluster 0", "to": "two"}, {"from": "Cluster 0", "to": "according"}, {"from": "Cluster 0", "to": "three"}, {"from": "Cluster 0", "to": "first"}, {"from": "Cluster 0", "to": "well"}, {"from": "Cluster 0", "to": "r\u00fav"}, {"from": "Cluster 0", "to": "would"}, {"from": "Cluster 0", "to": "since"}, {"from": "Cluster 1", "to": "covid"}, {"from": "Cluster 1", "to": "iceland"}, {"from": "Cluster 1", "to": "19"}, {"from": "Cluster 1", "to": "people"}, {"from": "Cluster 1", "to": "coronavirus"}, {"from": "Cluster 1", "to": "new"}, {"from": "Cluster 1", "to": "quarantine"}, {"from": "Cluster 1", "to": "also"}, {"from": "Cluster 1", "to": "two"}, {"from": "Cluster 1", "to": "today"}, {"from": "Cluster 1", "to": "cases"}, {"from": "Cluster 1", "to": "one"}, {"from": "Cluster 1", "to": "days"}, {"from": "Cluster 1", "to": "icelandic"}, {"from": "Cluster 1", "to": "yesterday"}, {"from": "Cluster 1", "to": "says"}, {"from": "Cluster 1", "to": "including"}, {"from": "Cluster 1", "to": "time"}, {"from": "Cluster 1", "to": "country"}, {"from": "Cluster 1", "to": "testing"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
